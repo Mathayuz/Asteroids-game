@@ -1,3 +1,5 @@
+-- Asteroids Game!!
+
 local tempoEntreDisparos = 0.25
 local tempoDesdeUltimoDisparo = 0
 
