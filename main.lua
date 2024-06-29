@@ -1,5 +1,7 @@
 -- Asteroids Game!!
 
+local vida = 3
+local pontuacao = 0
 local tempoEntreDisparos = 0.25
 local tempoDesdeUltimoDisparo = 0
 
