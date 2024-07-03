@@ -20,16 +20,16 @@ function love.update(dt)
         asteroid:update(dt)
     end
 
-    -- Colisão entre nave e asteroid
+    -- Colisao entre nave e asteroid
     for i = #asteroids, 1, -1 do
         local asteroid = asteroids[i]
-        if math.sqrt((nave.x - asteroid.x)^2 + (nave.y - asteroid.y)^2) < nave.raio + asteroid.radius then
+        if math.sqrt((nave.x - asteroid.x) ^ 2 + (nave.y - asteroid.y) ^ 2) < nave.raio + asteroid.radius then
             nave = Nave.new()
             vida = vida - 1
             table.remove(asteroids, i)
             if asteroid.radius > 20 then
-                table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
-                table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
+                table.insert(asteroids, Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
+                table.insert(asteroids, Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
             end
         end
     end
@@ -40,26 +40,31 @@ function love.update(dt)
         pontos = 0
     end
 
-    -- Colisão entre bala e asteroid
+    -- Colisao entre bala e asteroid
     for i = #nave.balas, 1, -1 do
         local bala = nave.balas[i]
         for j = #asteroids, 1, -1 do
             local asteroid = asteroids[j]
-            if math.sqrt((bala.x - asteroid.x)^2 + (bala.y - asteroid.y)^2) < asteroid.radius then
+            if math.sqrt((bala.x - asteroid.x) ^ 2 + (bala.y - asteroid.y) ^ 2) < asteroid.radius then
                 table.remove(nave.balas, i)
                 table.remove(asteroids, j)
                 if asteroid.radius > 35 then
-                    table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
-                    table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
+                    table.insert(asteroids,
+                        Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
+                    table.insert(asteroids,
+                        Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
                     pontos = pontos + 500
                 elseif asteroid.radius > 25 and asteroid.radius <= 35 then
-                    table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
-                    table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
+                    table.insert(asteroids,
+                        Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
+                    table.insert(asteroids,
+                        Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
                     pontos = pontos + 250
-
                 elseif asteroid.radius > 20 and asteroid.radius <= 25 then
-                    table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
-                    table.insert(asteroids, Asteroid.new({x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2}))
+                    table.insert(asteroids,
+                        Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
+                    table.insert(asteroids,
+                        Asteroid.new({ x = asteroid.x, y = asteroid.y, radius = asteroid.radius / 2 }))
                     pontos = pontos + 100
                 else
                     table.remove(asteroids, j)
@@ -79,6 +84,6 @@ function love.draw()
         asteroid:draw()
     end
     love.graphics.setFont(minhaFonte)
-    love.graphics.print("Score: " ..pontos, 10, 10)
-    love.graphics.print("Life: " ..vida, 10, 40)
+    love.graphics.print("Score: " .. pontos, 10, 10)
+    love.graphics.print("Life: " .. vida, 10, 40)
 end

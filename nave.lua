@@ -13,8 +13,7 @@ function Nave.new()
 end
 
 function Nave:update(dt)
-
-    -- Movimentação da nave
+    -- Movimentacao da nave
     if love.keyboard.isDown("w") then
         self.x = self.x + math.cos(self.angulo) * self.velocidade * dt
         self.y = self.y + math.sin(self.angulo) * self.velocidade * dt
@@ -29,7 +28,7 @@ function Nave:update(dt)
     if self.x < 0 then self.x = 1000 elseif self.x > 1000 then self.x = 0 end
     if self.y < 0 then self.y = 800 elseif self.y > 800 then self.y = 0 end
 
-    -- Movimentação das balas
+    -- Movimentacao das balas
     for i = #self.balas, 1, -1 do
         local bala = self.balas[i]
         bala.x = bala.x + math.cos(bala.angulo) * bala.velocidade * dt

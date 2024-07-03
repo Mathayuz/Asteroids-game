@@ -12,8 +12,7 @@ function Asteroid.new(params)
 end
 
 function Asteroid:update(dt)
-
-    -- Movimentação do asteroid
+    -- Movimentacaoo do asteroid
     self.x = self.x + math.cos(self.angle) * self.speed * dt
     self.y = self.y + math.sin(self.angle) * self.speed * dt
 
