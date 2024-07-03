@@ -1,26 +1,28 @@
 local Asteroid = {}
 Asteroid.__index = Asteroid
 
-function Asteroid.new()
-    local self = {}
-
-    self.x = math.random(1000, 800)
-    self.y = math.random(1000, 800)
-    self.angle = math.random(0, 2 * math.pi)
-    self.speed = math.random(75, 150)
-    self.radius = math.random(10, 40)
-
+function Asteroid.new(params)
+    local self = setmetatable({}, Asteroid)
+    self.x = params and params.x or math.random(0, 1000)
+    self.y = params and params.y or math.random(0, 800)
+    self.angle = params and params.angle or math.random() * 2 * math.pi
+    self.speed = params and params.speed or math.random(50, 100)
+    self.radius = params and params.radius or math.random(20, 50)
     return self
 end
 
-function Asteroid.update()
-    Asteroid.x = Asteroid.x + math.cos(Asteroid.angle) * Asteroid.speed
-    Asteroid.y = Asteroid.y + math.sin(Asteroid.angle) * Asteroid.speed
+function Asteroid:update(dt)
 
-    if Asteroid.x < 0 then Asteroid.x = 1000 elseif Asteroid.x > 1000 then Asteroid.x = 0 end
-    if Asteroid.y < 0 then Asteroid.y = 800 elseif Asteroid.y > 800 then Asteroid.y = 0 end
+    -- Movimentação do asteroid
+    self.x = self.x + math.cos(self.angle) * self.speed * dt
+    self.y = self.y + math.sin(self.angle) * self.speed * dt
+
+    if self.x < 0 then self.x = 1000 elseif self.x > 1000 then self.x = 0 end
+    if self.y < 0 then self.y = 800 elseif self.y > 800 then self.y = 0 end
 end
 
-function Asteroid.draw()
-    love.graphics.circle("line", Asteroid.x, Asteroid.y, Asteroid.radius)
+function Asteroid:draw()
+    love.graphics.circle("line", self.x, self.y, self.radius)
 end
+
+return Asteroid
