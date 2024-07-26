@@ -1,5 +1,8 @@
+local WIDTH = 1200
+local HEIGHT = 800
+
 function love.conf(t)
     t.window.title = "Flappy Sonic"
-    t.window.width = 1200
-    t.window.height = 800
+    t.window.width = WIDTH
+    t.window.height = HEIGHT
 end
