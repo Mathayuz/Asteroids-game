@@ -12,6 +12,18 @@ end
 function love.update(dt)
     sonic:update(dt)
     pipes:update(dt)
+    -- Colisão entre Sonic e bordas
+    if sonic.y < 0 or sonic.y + sonic.height > 700 then
+        love.load()
+    end
+    -- Colisão entre Sonic e pipes
+    for _, pipe in ipairs(pipes.pipes) do
+        if sonic.x + sonic.width > pipe.x and
+            sonic.x < pipe.x + pipe.width and
+            (sonic.y < pipe.y or sonic.y + sonic.height > pipe.y + pipe.height) then
+            love.load()
+        end
+    end
 end
 
 function love.draw()
